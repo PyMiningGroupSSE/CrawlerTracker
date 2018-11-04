@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Crawler Nodes Status - PyMiningGroupSSE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Nodes Status Monitor</h2>
+        <p>Total Count: <span id="totalCount">{{ total_cnt }}</span></p>
+    </div>
+
+    <div class="col-md-8 mr-auto ml-auto">
+        <h4 class="mb-3">All Nodes</h4>
+        <div class="alert alert-warning text-left fade show" style="display: none" role="alert">
+            <span id="alertTextShow"></span>
+        </div>
+        <table id="nodesTable" class="table table-hover table-light mb-5">
+            <thead>
+                <tr>
+                  <th scope="col">Node ID</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for node in nodelist %}
+                <tr id="{{ node["id"] }}">
+                  <td>{{ node["id"] }}</td>
+                  <td>{{ node["ip"] }}</td>
+                  <td><span class="badge badge-success">Running</span></td>
+                  <td>{{ node["count"] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+        </table>
+    </div>
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-2018 PyMiningGroupSSE</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/js.tools.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/status.js') }}"></script>
+
+</body>
+</html>
