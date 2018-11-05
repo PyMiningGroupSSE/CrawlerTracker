@@ -185,5 +185,6 @@ def __generate_json__(status, info=None, token=None, data=None):
 
 if __name__ == '__main__':
     threading.Thread(target=main).start()
+    logging.basicConfig(level=logging.WARNING)
     __flask_app__.debug = False
-    __flask_app__.run(host="127.0.0.1", port=25316)
+    __flask_app__.run(host="0.0.0.0", port=25316)
