@@ -62,9 +62,11 @@ def main():
     msgsock.bind(__conf__["server"]["bind_addr"], __conf__["server"]["bind_port"])
     msgsock.listen(50)
     while True:
-        print("waiting for clients...")
-        conn, address = msgsock.accept()
-        msg = json.loads(conn.recv_msg())
+        try:
+            conn, address = msgsock.accept()
+            msg = json.loads(conn.recv_msg())
+        except:
+            continue
         if msg["cmd"] == __CMD_CONNECT__ and msg["id"] not in __nodelist__.get_ids():
             __nodelist__.append(NodeInfo(msg["id"], address[0]))
             print("client '{0}' connected".format(address[0]))
