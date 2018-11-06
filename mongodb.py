@@ -31,7 +31,9 @@ class MongoDb:
 
     def put_news(self, news):
         self.set_collection(news["type"])
-        self.__collection__.insert_one(news)
+        query = self.__collection__.find_one({"url": news['url']})
+        if query is None:
+            self.__collection__.insert_one(news)
 
     def get_news_count(self):
         count = 0
