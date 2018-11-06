@@ -39,5 +39,5 @@ class MongoDb:
         count = 0
         db = self.__mongo_client__[__DATABASE_NAME__]
         for coll in db.collection_names():
-            count += db[coll].count_documents({})
+            count += db[coll].estimated_document_count()
         return count
