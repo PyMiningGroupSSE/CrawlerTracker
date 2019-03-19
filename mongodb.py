@@ -1,5 +1,6 @@
 from bson import ObjectId
 import pymongo
+import urllib.parse
 
 __DATABASE_NAME__ = "NewsDB"
 
@@ -10,6 +11,8 @@ class MongoDb:
 
     # 类构造函数 #
     def __init__(self, addr, port, user=None, pwd=None):
+        user = urllib.parse.quote_plus(user)
+        pwd = urllib.parse.quote_plus(pwd)
         # 创建mongodb连接
         if user is not None and pwd is not None:
             self.__mongo_client__ = pymongo.MongoClient("mongodb://{0}:{1}@{2}:{3}/".format(user, pwd, addr, port))
