@@ -10,7 +10,10 @@ class MongoDb:
     __collection__ = None
 
     # 类构造函数 #
-    def __init__(self, addr, port, user=None, pwd=None):
+    def __init__(self, addr, port, user=None, pwd=None, conn_uri=None):
+        if conn_uri is not None:
+            self.__mongo_client__ = pymongo.MongoClient(conn_uri)
+            return
         user = urllib.parse.quote_plus(user)
         pwd = urllib.parse.quote_plus(pwd)
         # 创建mongodb连接

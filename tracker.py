@@ -53,7 +53,10 @@ if "user" in __conf__["mongodb"] and __conf__["mongodb"]["user"]:
     user = __conf__["mongodb"]["user"]
 if "pass" in __conf__["mongodb"] and __conf__["mongodb"]["pass"]:
     pwd = __conf__["mongodb"]["pass"]
-__mongo__ = MongoDb(host, port, user, pwd)
+if "conn_uri" in __conf__["mongodb"] and __conf__["mongodb"]["conn_uri"]:
+    __mongo__ = MongoDb(conn_uri=__conf__["mongodb"]["conn_uri"])
+else:
+    __mongo__ = MongoDb(host, port, user, pwd)
 
 
 def main():
