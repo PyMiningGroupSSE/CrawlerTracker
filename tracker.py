@@ -92,7 +92,7 @@ def fetch_urls():
         "Accept-Language": "en,zh-CN;q=0.9,zh;q=0.8"
     }
     while True:
-        if __tasklist__.length() > 200:
+        if __tasklist__.length() > 500:
             time.sleep(1)
             continue
         logging.info("fetching new tasks")
